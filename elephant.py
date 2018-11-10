@@ -30,8 +30,8 @@ def main():
     click.secho("|_____|_|___|  _|_|_|__,|_|_|_|    |_|_|_|  |_| |_|_|___|  |_____|_|___|___|_,_|", bg='blue', fg='white')
     click.secho("            |_|                                                                 ", bg='blue', fg='white')
     click.secho("                                V 0.001",  fg='white')
-
-
+    print
+    print
     click.secho("fetching Bitcoin price from coindesk.com ..." , fg = 'white')
     r = requests.get('https://api.coindesk.com/v1/bpi/currentprice.json')
     price = r.json()['bpi']['USD']['rate']
