@@ -30,13 +30,16 @@ def main():
     click.secho("|_____|_|___|  _|_|_|__,|_|_|_|    |_|_|_|  |_| |_|_|___|  |_____|_|___|___|_,_|", bg='blue', fg='white')
     click.secho("            |_|                                                                 ", bg='blue', fg='white')
     click.secho("                                V 0.001",  fg='white')
-    print
-    print
+    click.secho
+    click.secho
     click.secho("fetching Bitcoin price from coindesk.com ..." , fg = 'white')
     r = requests.get('https://api.coindesk.com/v1/bpi/currentprice.json')
     price = r.json()['bpi']['USD']['rate']
     click.secho("1 BTC = " + price + " USD", fg = 'red')
+    print
     bitcoinBlockHalf()
+    print
+    blockChainCom()
 
 def bitcoinBlockHalf():
     click.secho("scraping information from bitcoinblockhalf.com ..." , fg = 'white')
@@ -72,6 +75,25 @@ def bitcoinBlockHalf():
     click.secho (list(percentageOfBitcoinMined)[0].get_text() + list(percentageOfBitcoinMined)[1].get_text(), fg = 'red')
     click.secho (list(bitcoinLeftToMine)[0].get_text() + list(bitcoinLeftToMine)[1].get_text(), fg = 'red')
 
+
+def blockChainCom():
+    click.secho("Using blockchain.com's API to fetch additional information ..." , fg = 'white')
+    print
+    click.secho ("Hash of the latest block", fg = 'white')
+    r = requests.get("https://blockchain.info/q/latesthash")
+    print (r.text)
+
+    click.secho ("Current block reward in BTC :", fg = 'white')
+    r = requests.get("https://blockchain.info/q/bcperblock")
+    print (float(r.text)/100000000)
+
+    click.secho ("Total Bitcoins in circulation (delayed by up to 1 hour]): ", fg = 'white')
+    r = requests.get("https://blockchain.info/q/totalbc")
+    print (float(r.text)/100000000)
+
+    click.secho("Probability of finding a valid block each hash attempt", fg = 'white')
+    r = requests.get("https://blockchain.info/q/probability")
+    print (r.text)
 
 
 if __name__ == "__main__":
