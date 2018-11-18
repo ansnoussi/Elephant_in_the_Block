@@ -8,6 +8,9 @@ from bs4 import BeautifulSoup
 @click.command()
 
 def main():
+    """
+    get detailled information about Bitcoin and its Block-chain
+    """
     click.secho("              ___.-~\"~-._   __....__" , fg = 'blue')
     click.secho("            .'    `    \ ~\"~        ``-.", fg = 'blue')
     click.secho("           /` _      )  `\              `\ ", fg = 'blue')

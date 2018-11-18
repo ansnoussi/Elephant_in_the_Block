@@ -1,3 +1,6 @@
+1-a simple mode that displays random simple information about bitcoin and have this art bellow:
+
+
                        _       __,"\\  _.
     /\\     /\\   _.--/ `.   ,' (   "_//"
  ,''\,"  ,""\,"=='(   \.'\\_,(  _`-'=-'
@@ -6,7 +9,12 @@
 
 
 
-
+2- an interactive mode that have multiple options and have this art bellow:
+    * general information like the simple mode
+    * graphical representaion of the block-chain and each block's hash
+    * "catch me an elephant" : the user specify an ammount (in Million dollars) and each
+        time a transaction that big (or obv bigger) gets brodcasted (or verified) the user 
+        gets a notification
 
 
              ___.-~"~-._   __....__
