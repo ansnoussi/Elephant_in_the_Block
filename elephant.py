@@ -1,10 +1,16 @@
 #!/usr/bin/env python
 
-import click
 import os
+import click
 from dotenv import load_dotenv
 
 load_dotenv()
+
+
+
+
+
+
 
 @click.command()
 @click.option('--verbose', '-v', is_flag=True, help="Print more output.")
@@ -38,7 +44,15 @@ def main(verbose):
     click.secho("                                V 0.001",  fg='white')
     click.secho
     click.secho
-    click.secho(f"Listening for Elephants {'verbose' if verbose else ''} ..." , fg = 'white')
+    click.secho(f"Listening for Elephants {'in verbose mode' if verbose else ''} ..." , fg = 'white')
+
+
+
+
+
+
+
+
 
 if __name__ == "__main__":
     main()
