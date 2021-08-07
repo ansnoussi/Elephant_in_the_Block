@@ -1,14 +1,19 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 import click
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
 @click.command()
-
-def main():
+@click.option('--verbose', '-v', is_flag=True, help="Print more output.")
+def main(verbose):
     """
     Get alerted each time a transaction is made on the Bitcoin blockchain that surpasses 1 Million Dollars.
     """
+    API_KEY = os.getenv('API_KEY')
+
     click.secho("              ___.-~\"~-._   __....__" , fg = 'blue')
     click.secho("            .'    `    \ ~\"~        ``-.", fg = 'blue')
     click.secho("           /` _      )  `\              `\ ", fg = 'blue')
@@ -33,7 +38,7 @@ def main():
     click.secho("                                V 0.001",  fg='white')
     click.secho
     click.secho
-    click.secho("Listening for Elephants ..." , fg = 'white')
+    click.secho(f"Listening for Elephants {'verbose' if verbose else ''} ..." , fg = 'white')
 
 if __name__ == "__main__":
     main()
