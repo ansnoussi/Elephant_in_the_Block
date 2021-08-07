@@ -11,7 +11,16 @@ load_dotenv()
 
 
 
-
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
 
 
@@ -46,11 +55,11 @@ def main(verbose,ammount):
     click.secho("|   __| | -_| . |   | .'|   |  _|  | |   |  |  _|   | -_|  | __ -| | . |  _| '_|", bg='blue', fg='white')
     click.secho("|_____|_|___|  _|_|_|__,|_|_|_|    |_|_|_|  |_| |_|_|___|  |_____|_|___|___|_,_|", bg='blue', fg='white')
     click.secho("            |_|                                                                 ", bg='blue', fg='white')
-    click.secho("                                V 0.001",  fg='white')
+    click.secho("                                V 0.002",  fg='white')
     click.secho
     click.secho
     click.secho(f"Listening for Elephants {'in verbose mode' if verbose else ''} ..." , fg = 'white')
-
+    print()
 
     while(True):
         # get the current timestamp
@@ -59,7 +68,6 @@ def main(verbose,ammount):
 
         # we are choosing intervals of 15s so we dont surpass the api limit
         # start_time = current_time - 15
-        start_time = current_time - 15
 
         # turn them into a string
         start = str(start_time)
@@ -76,16 +84,23 @@ def main(verbose,ammount):
             for key in transactions:
                 if key['from']['owner_type'] == 'exchange' and key['to']['owner_type'] == 'exchange':
                     if key['from']['owner'] == key['to']['owner']:
-                        logOutput("🐘 " +str(int(key['amount']))+' #'+key['symbol'].upper() +' (' + str(int(key['amount_usd'])) + ' USD) Was transfered on #' + key['from']['owner'].title())
+                        logOutput("🐘 " + bcolors.WARNING + bcolors.BOLD +str(int(key['amount']))+' '+key['symbol'].upper()+ bcolors.ENDC  + bcolors.OKGREEN + bcolors.BOLD+' (' + str(int(key['amount_usd'])) + ' USD)' + bcolors.ENDC +' Was transfered on #' + key['from']['owner'].title())
                     else:
-                        logOutput("🐘 " +str(int(key['amount']))+' #'+key['symbol'].upper() +' (' + str(int(key['amount_usd'])) + ' USD) Was transfered from #' + key['from']['owner'].title() + ' to #' + key['to']['owner'].title())
+                        logOutput("🐘 " + bcolors.WARNING + bcolors.BOLD +str(int(key['amount']))+' '+key['symbol'].upper()+ bcolors.ENDC  + bcolors.OKGREEN + bcolors.BOLD+' (' + str(int(key['amount_usd'])) + ' USD)' + bcolors.ENDC +' Was transfered from #' + key['from']['owner'].title() + ' to #' + key['to']['owner'].title())
                 elif key['from']['owner_type'] == 'exchange' and key['to']['owner_type'] == 'unknown':
-                    logOutput("🐘 " +str(int(key['amount']))+' #'+key['symbol'].upper() +' (' + str(int(key['amount_usd'])) + ' USD) Was transfered from #' + key['from']['owner'].title() + ' to ' + key['to']['owner_type'])
+                    logOutput("🐘 " + bcolors.WARNING + bcolors.BOLD +str(int(key['amount']))+' '+key['symbol'].upper()+ bcolors.ENDC  + bcolors.OKGREEN + bcolors.BOLD+' (' + str(int(key['amount_usd'])) + ' USD)' + bcolors.ENDC +' Was transfered from #' + key['from']['owner'].title() + ' to ' + key['to']['owner_type'])
                 elif key['from']['owner_type'] == 'unknown' and key['to']['owner_type'] == 'exchange':
-                    logOutput("🐘 " +str(int(key['amount']))+' #'+key['symbol'].upper() +' (' + str(int(key['amount_usd'])) + ' USD) Was transfered from ' + key['from']['owner_type'] + ' to #' + key['to']['owner'].title())
+                    logOutput("🐘 " + bcolors.WARNING + bcolors.BOLD +str(int(key['amount']))+' '+key['symbol'].upper()+ bcolors.ENDC  + bcolors.OKGREEN + bcolors.BOLD+' (' + str(int(key['amount_usd'])) + ' USD)' + bcolors.ENDC +' Was transfered from ' + key['from']['owner_type'] + ' to #' + key['to']['owner'].title())
                 elif key['from']['owner_type'] == 'unknown' and key['to']['owner_type'] == 'unknown':
-                    logOutput("🐘 " +str(int(key['amount']))+' #'+key['symbol'].upper() +' (' + str(int(key['amount_usd'])) + ' USD) Was transfered from ' + key['from']['owner_type'] + ' to ' + key['to']['owner_type'])
+                    logOutput("🐘 " + bcolors.WARNING + bcolors.BOLD +str(int(key['amount']))+' '+key['symbol'].upper()+ bcolors.ENDC  + bcolors.OKGREEN + bcolors.BOLD+' (' + str(int(key['amount_usd'])) + ' USD)' + bcolors.ENDC +' Was transfered from ' + key['from']['owner_type'] + ' to ' + key['to']['owner_type'])
 
+                # check if verbouse to show extra output
+                if(verbose):
+                    logOutput("💰 from " + bcolors.OKCYAN + bcolors.BOLD + key['from']['address'] + bcolors.ENDC )
+                    logOutput("💰 to " + bcolors.OKCYAN + bcolors.BOLD + key['to']['address'] + bcolors.ENDC)
+                
+                click.secho("+"*70,  fg='green')
+                    
 
         time.sleep(15)
 
