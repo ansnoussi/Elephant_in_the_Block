@@ -1,5 +1,30 @@
-# Elephant_in_the_Block
-a simple tool to monitor the bitcoin block-chain and display real-time information using the Bitcoin Developer API.
-![alt text](https://i.imgur.com/uOKONOs.jpg)
+# Elephant in the Block
 
+Elephant in the block is a CLI tool that will alert you each time a transaction is made on the Bitcoin blockchain that surpasses **1 Million Dollars**.
 
+---
+
+## FAQ
+
+<details>
+<summary> <b> Why? </b> </summary>
+Because it's fun, and exciting to a certain extent.
+</details>
+
+<br>
+
+<details>
+<summary> <b> What does 'Elephant' mean? </b> </summary>
+I find it really interesting how elphants hold tails when walking in a line (just like a blockchain right ?), so this tool is called Elephant in the block because it will help you catch that big Elephant.
+<img src="https://i.imgur.com/Phgx3Sm.jpeg">
+</details>
+
+---
+
+## Run in a Virtualenv
+
+1. create a Virtualenv : `virtualenv venv`
+2. connect to it : `source venv/bin/activate`
+3. install from requirements file : `pip install -r requirements.txt`
+4. generate requirements file : `pip freeze —local > requirements.txt`
+5. disconnect from Virtualenv : `deactivate`
